@@ -100,7 +100,7 @@ export default class extends Phaser.State {
     this.background.stop();
     
     // Set the alive property of the bird to false
-    this.bird.kill();
+    this.bird.alive = false;
     
     // Prevent new pipes from appearing
     this.game.time.events.remove(this.timer);
