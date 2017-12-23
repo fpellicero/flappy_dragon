@@ -31,13 +31,13 @@ module.exports = {
     definePlugin,
     new CleanWebpackPlugin(['dist']),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new webpack.optimize.UglifyJsPlugin({
+    /*new webpack.optimize.UglifyJsPlugin({
       drop_console: true,
       minimize: true,
       output: {
         comments: false
       }
-    }),
+    }),*/
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor'/* chunkName= */, filename: 'vendor.bundle.js'/* filename= */}),
     new HtmlWebpackPlugin({
       filename: '../index.html',
@@ -59,7 +59,14 @@ module.exports = {
   ],
   module: {
     rules: [
-      { test: /\.js$/, use: ['babel-loader'], include: path.join(__dirname, 'src') },
+      { 
+        test: /\.js$/, 
+        loader: 'babel-loader', 
+        include: path.join(__dirname, 'src'),
+        options: {
+          plugins: ['transform-class-properties']
+        }
+      },
       { test: /pixi\.js/, use: ['expose-loader?PIXI'] },
       { test: /phaser-split\.js$/, use: ['expose-loader?Phaser'] },
       { test: /p2\.js/, use: ['expose-loader?p2'] }
