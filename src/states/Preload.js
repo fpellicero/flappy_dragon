@@ -19,6 +19,7 @@ export default class extends Phaser.State {
     
     game.load.image('background', 'assets/backgrounds.png')
     game.load.audio('jump', 'assets/jump.wav');
+    game.load.audio('crash', 'assets/crash.wav');
   }
 
   create () {
